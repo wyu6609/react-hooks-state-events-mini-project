@@ -1,10 +1,22 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 
-function CategoryFilter() {
+function CategoryFilter({ CATEGORIES, setFilteredCategory }) {
+  //sets state of the category
+  const categoryHandler = (event) => {
+    setFilteredCategory(event.target.name);
+  };
+
   return (
     <div className="categories">
       <h5>Category filters</h5>
-      {/* render <button> elements for each category here */}
+      {CATEGORIES.map((category) => {
+        return (
+          <button key={uuid()} onClick={categoryHandler} name={category}>
+            {category}
+          </button>
+        );
+      })}
     </div>
   );
 }
